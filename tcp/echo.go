@@ -55,7 +55,7 @@ func (handler *EchoHandler) Handler(ctx context.Context, conn net.Conn) {
 	//循环读取客户端发送过来的字符
 
 	for {
-		// 接收消息 如果是 \n 就写回去
+		// 接收消息 如果是 \n 回车就写回去
 		msg, err := reader.ReadString('\n')
 
 		fmt.Println("接收到数据:", msg)
