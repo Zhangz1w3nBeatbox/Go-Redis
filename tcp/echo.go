@@ -1,9 +1,12 @@
 package main
 
 import (
+	"Go-Redis/lib/logger"
 	"Go-Redis/lib/sync/atomic"
 	"Go-Redis/lib/sync/wait"
+	"bufio"
 	"context"
+	"io"
 	"net"
 	"sync"
 	"time"
@@ -42,12 +45,50 @@ func (handler *EchoHandler) Handler(ctx context.Context, conn net.Conn) {
 	//EchoHandler的map中 存放这个client
 	handler.activeCon.Store(client, struct{}{})
 
+	reader := bufio.NewReader(conn)
+
+	//循环读取客户端发送过来的字符
+
+	for {
+		// 接收消息 如果是 \n 就写回去
+		msg, err := reader.ReadString('\n')
+
+		//有异常
+		if err != nil {
+			if err == io.EOF {
+				logger.Info("connection close...")
+				handler.activeCon.Delete(client)
+			} else {
+				logger.Warn(err)
+			}
+
+			return
+		}
+
+		//等客户端读完 之后才能做其他事情 否则 阻塞
+		client.waiting.Add(1)
+
+		b := []byte(msg)
+
+		_, _ = conn.Read(b)
+
+		client.waiting.Done()
+
+	}
+
 }
 
+//关闭handler方法
 func (handler *EchoHandler) Close() error {
+	logger.Info("handler shout down")
+
+	handler.closing.Set(true)
+
+	handler.activeCon.Range(func(key, value interface{}) bool {
+		client := key.(*EchoClient)
+		_ = client.Conn.Close()
+		return true
+	})
+
 	return nil
-}
-
-func main() {
-
 }
