@@ -10,9 +10,10 @@ import (
 type Handler interface {
 	/*
 		处理tcp连接
+		redis核心业务
 	*/
 
 	Handler(ctx context.Context, conn net.Conn)
 
-	close() error
+	Close() error
 }
