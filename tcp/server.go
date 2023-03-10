@@ -26,7 +26,7 @@ func ListenAndServeWithSignal(config *Config, handler tcp.Handler) error {
 	//信号管道
 	signChannel := make(chan os.Signal)
 
-	//监控系统信号-比如关闭tcp服务器 到 signChannel
+	//监控系统信号-比如关闭tcp服务器 写到 signChannel
 	signal.Notify(signChannel, syscall.SIGHUP, syscall.SIGQUIT, syscall.SIGTERM, syscall.SIGINT)
 
 	//取出channel
@@ -100,6 +100,7 @@ func ListenAndServe(
 		}()
 
 	}
+
 	//等待任务处理完才能结束
 	waitDone.Wait()
 }
