@@ -24,7 +24,6 @@ func ListenAndServeWithSignal(config *Config, handler tcp.Handler) error {
 	logger.Info("start listen")
 
 	channel := make(chan struct{})
-
 	//监听新连接
 	ListenAndServe(listen, handler, channel)
 
