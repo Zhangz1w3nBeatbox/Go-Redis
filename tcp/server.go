@@ -30,7 +30,8 @@ func ListenAndServeWithSignal(config *Config, handler tcp.Handler) error {
 	return nil
 }
 
-func ListenAndServe(listener net.Listener,
+func ListenAndServe(
+	listener net.Listener,
 	handler tcp.Handler,
 	chanel chan struct{}) error {
 
@@ -46,10 +47,11 @@ func ListenAndServe(listener net.Listener,
 
 		logger.Info("接收新连接")
 
-		//一个携程处理一个连接
+		//一个协程处理一个新连接
 		go func() {
 			handler.Handler(ctx, con)
 		}()
+
 	}
 
 	return nil
