@@ -1,8 +1,8 @@
 package config
 
 import (
+	"Go-Redis/lib/logger"
 	"bufio"
-	"go-redis/lib/logger"
 	"io"
 	"os"
 	"reflect"

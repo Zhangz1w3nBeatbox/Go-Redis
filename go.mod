@@ -1,3 +1,3 @@
-module go-redis
+module Go-Redis
 go 1.17
 

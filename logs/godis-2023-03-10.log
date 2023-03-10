@@ -1,0 +1,18 @@
+[ERROR][main.go:42] 2023/03/10 15:16:02 listen tcp 0.0.0.0:6379: bind: address already in use
+[INFO][server.go:48] 2023/03/10 15:16:52 start listen
+[INFO][server.go:88] 2023/03/10 15:20:54 接收新连接
+[INFO][echo.go:63] 2023/03/10 15:23:00 connection close...
+[INFO][server.go:64] 2023/03/10 15:24:05 正在关闭...
+[INFO][echo.go:87] 2023/03/10 15:24:05 handler shout down
+[INFO][server.go:48] 2023/03/10 15:24:07 start listen
+[INFO][server.go:88] 2023/03/10 15:24:14 接收新连接
+[INFO][server.go:64] 2023/03/10 15:25:18 正在关闭...
+[INFO][echo.go:90] 2023/03/10 15:25:18 handler shout down
+[WARN][echo.go:69] 2023/03/10 15:25:18 read tcp 127.0.0.1:6380->127.0.0.1:63075: use of closed network connection
+[INFO][echo.go:90] 2023/03/10 15:25:18 handler shout down
+[INFO][server.go:48] 2023/03/10 15:25:19 start listen
+[INFO][server.go:88] 2023/03/10 15:25:22 接收新连接
+[INFO][server.go:64] 2023/03/10 15:27:14 正在关闭...
+[INFO][echo.go:90] 2023/03/10 15:27:14 handler shout down
+[WARN][echo.go:69] 2023/03/10 15:27:14 read tcp 127.0.0.1:6380->127.0.0.1:63782: use of closed network connection
+[INFO][echo.go:90] 2023/03/10 15:27:14 handler shout down

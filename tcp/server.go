@@ -1,4 +1,4 @@
-package main
+package tcp
 
 import (
 	"Go-Redis/interface/tcp"

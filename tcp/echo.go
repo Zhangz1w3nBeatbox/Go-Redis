@@ -1,4 +1,4 @@
-package main
+package tcp
 
 import (
 	"Go-Redis/lib/logger"
@@ -6,6 +6,7 @@ import (
 	"Go-Redis/lib/sync/wait"
 	"bufio"
 	"context"
+	"fmt"
 	"io"
 	"net"
 	"sync"
@@ -31,6 +32,10 @@ type EchoHandler struct {
 	closing   atomic.Boolean
 }
 
+func MakeHandler() *EchoHandler {
+	return &EchoHandler{}
+}
+
 func (handler *EchoHandler) Handler(ctx context.Context, conn net.Conn) {
 
 	if handler.closing.Get() {
@@ -53,6 +58,8 @@ func (handler *EchoHandler) Handler(ctx context.Context, conn net.Conn) {
 		// 接收消息 如果是 \n 就写回去
 		msg, err := reader.ReadString('\n')
 
+		fmt.Println("接收到数据:", msg)
+
 		//有异常
 		if err != nil {
 			if err == io.EOF {
@@ -70,7 +77,7 @@ func (handler *EchoHandler) Handler(ctx context.Context, conn net.Conn) {
 
 		b := []byte(msg)
 
-		_, _ = conn.Read(b)
+		_, _ = conn.Write(b)
 
 		client.waiting.Done()
 
