@@ -39,7 +39,6 @@ var NullBulkBytes = []byte("$-1\r\n")
 func (nullBulkReply NullBulkReply) ToBytes() []byte {
 	return NullBulkBytes
 }
-
 func MakeNullBulkReply() *NullBulkReply {
 	return &NullBulkReply{}
 }
