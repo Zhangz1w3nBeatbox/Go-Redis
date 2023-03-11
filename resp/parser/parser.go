@@ -36,7 +36,6 @@ func (s *readState) finished() bool {
 //
 func ParseStream(reader io.Reader) chan<- *PayLoad {
 	ch := make(chan *PayLoad)
-
 	//异步解析-减少tcp的阻塞等待
 	go parse0(reader, ch)
 
