@@ -6,6 +6,10 @@ import (
 	"strconv"
 )
 
+/*
+	定义 服务器 回复 客户端的信息
+*/
+
 var (
 	nullBulkReplyBytes = []byte("$-1")
 	CRLF               = "\r\n"
