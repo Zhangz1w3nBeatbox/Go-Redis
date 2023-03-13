@@ -85,3 +85,14 @@
 [INFO][handler.go:52] 2023/03/12 23:13:10 connection closed: 127.0.0.1:58350
 [INFO][handler.go:100] 2023/03/12 23:13:10 handler shutting down...
 [INFO][echo_database.go:26] 2023/03/12 23:13:10 EchoDatabase Close
+[INFO][server.go:48] 2023/03/12 23:34:28 start listen
+[INFO][server.go:88] 2023/03/12 23:34:28 接收新连接
+[ERROR][handler.go:66] 2023/03/12 23:34:38 empty payload
+[ERROR][handler.go:66] 2023/03/12 23:34:43 empty payload
+[INFO][server.go:64] 2023/03/12 23:34:47 正在关闭...
+[INFO][handler.go:100] 2023/03/12 23:34:47 handler shutting down...
+[INFO][echo_database.go:26] 2023/03/12 23:34:47 EchoDatabase Close
+[INFO][echo_database.go:22] 2023/03/12 23:34:47 EchoDatabase AfterClientClose
+[INFO][handler.go:52] 2023/03/12 23:34:47 connection closed: 127.0.0.1:61609
+[INFO][handler.go:100] 2023/03/12 23:34:47 handler shutting down...
+[INFO][echo_database.go:26] 2023/03/12 23:34:47 EchoDatabase Close
