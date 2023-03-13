@@ -70,3 +70,27 @@
 [INFO][handler.go:52] 2023/03/13 18:26:34 connection closed: 127.0.0.1:58474
 [INFO][server.go:64] 2023/03/13 18:26:34 正在关闭...
 [INFO][handler.go:103] 2023/03/13 18:26:34 handler shutting down...
+[INFO][server.go:48] 2023/03/13 18:29:09 start listen
+[INFO][server.go:88] 2023/03/13 18:29:12 接收新连接
+[ERROR][parser.go:56] 2023/03/13 18:29:53 goroutine 6 [running]:
+runtime/debug.Stack()
+	/usr/local/go/src/runtime/debug/stack.go:24 +0x65
+Go-Redis/resp/parser.parse0.func1()
+	/Users/zhangz1w3nbeatbox/go/src/Go-Redis/resp/parser/parser.go:56 +0x2a
+panic({0x1100240, 0xc000018090})
+	/usr/local/go/src/runtime/panic.go:838 +0x207
+Go-Redis/resp/parser.readBody({0xc00001e0d4?, 0x4?, 0x0?}, 0xc000057f10?)
+	/Users/zhangz1w3nbeatbox/go/src/Go-Redis/resp/parser/parser.go:251 +0x257
+Go-Redis/resp/parser.parse0({0x28aa1008?, 0xc000010010?}, 0x0?)
+	/Users/zhangz1w3nbeatbox/go/src/Go-Redis/resp/parser/parser.go:131 +0x7dd
+created by Go-Redis/resp/parser.ParseStream
+	/Users/zhangz1w3nbeatbox/go/src/Go-Redis/resp/parser/parser.go:48 +0x98
+
+[INFO][server.go:64] 2023/03/13 18:30:25 正在关闭...
+[INFO][handler.go:103] 2023/03/13 18:30:25 handler shutting down...
+[INFO][server.go:48] 2023/03/13 18:30:27 start listen
+[INFO][server.go:88] 2023/03/13 18:30:33 接收新连接
+[INFO][server.go:64] 2023/03/13 18:30:54 正在关闭...
+[INFO][handler.go:103] 2023/03/13 18:30:54 handler shutting down...
+[INFO][handler.go:52] 2023/03/13 18:30:54 connection closed: 127.0.0.1:61352
+[INFO][handler.go:103] 2023/03/13 18:30:54 handler shutting down...

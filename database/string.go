@@ -4,7 +4,6 @@ import (
 	"Go-Redis/interface/database"
 	"Go-Redis/interface/resp"
 	"Go-Redis/resp/reply"
-	"fmt"
 )
 
 func (db *DB) getAsString(key string) ([]byte, reply.ErrorReply) {
@@ -42,18 +41,14 @@ func execGet(db *DB, args [][]byte) resp.Reply {
 //SET k1 v1
 func execSet(db *DB, args [][]byte) resp.Reply {
 	key := string(args[0])
-	val := string(args[1])
-
-	fmt.Println(val)
+	val := args[1]
 
 	entity := &database.DataEntity{
 		Data: val,
 	}
 
-	fmt.Println(entity)
-
 	db.PutEntity(key, entity)
-	fmt.Println(db)
+
 	return reply.MakeOkReply()
 }
 
