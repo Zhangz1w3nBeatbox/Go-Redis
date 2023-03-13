@@ -27,6 +27,7 @@ func MakeDB() *DB {
 func (db *DB) Exec(c resp.Connection, cmdLine CmdLine) resp.Reply {
 	//用户发送的指令 ping or set or setnx
 	cmdName := strings.ToLower(string(cmdLine[0]))
+	// 去command表中寻找 对应的指令
 	cmd, ok := cmdTable[cmdName]
 
 	if !ok {

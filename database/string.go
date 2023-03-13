@@ -4,24 +4,39 @@ import (
 	"Go-Redis/interface/database"
 	"Go-Redis/interface/resp"
 	"Go-Redis/resp/reply"
+	"fmt"
 )
+
+func (db *DB) getAsString(key string) ([]byte, reply.ErrorReply) {
+	entity, ok := db.GetEntity(key)
+	if !ok {
+		return nil, nil
+	}
+
+	bytes, ok := entity.Data.([]byte)
+
+	if !ok {
+		return nil, &reply.WrongTypeErrReply{}
+	}
+
+	return bytes, nil
+}
 
 //GET k1
 func execGet(db *DB, args [][]byte) resp.Reply {
 	key := string(args[0])
-	entity, exists := db.GetEntity(key)
-	if !exists {
-		return reply.MakeNullBulkReply()
+
+	bytes, err := db.getAsString(key)
+
+	if err != nil {
+		return err
 	}
 
-	bytes, b := entity.Data.([]byte)
-
-	if !b {
-		return reply.MakeStandardErrReply("转化失败")
+	if bytes == nil {
+		return &reply.NullBulkReply{}
 	}
 
 	return reply.MakeBulkReply(bytes)
-
 }
 
 //SET k1 v1
@@ -29,12 +44,16 @@ func execSet(db *DB, args [][]byte) resp.Reply {
 	key := string(args[0])
 	val := string(args[1])
 
+	fmt.Println(val)
+
 	entity := &database.DataEntity{
 		Data: val,
 	}
 
-	db.PutEntity(key, entity)
+	fmt.Println(entity)
 
+	db.PutEntity(key, entity)
+	fmt.Println(db)
 	return reply.MakeOkReply()
 }
 

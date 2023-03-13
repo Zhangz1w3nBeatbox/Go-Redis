@@ -71,7 +71,10 @@ func (h *RespHandler) Handler(ctx context.Context, conn net.Conn) {
 			logger.Error("require multi bulk reply")
 			continue
 		}
+
+		//
 		result := h.db.Exec(client, r.Args)
+
 		if result != nil {
 			_ = client.Write(result.ToBytes())
 		} else {
@@ -83,7 +86,7 @@ func (h *RespHandler) Handler(ctx context.Context, conn net.Conn) {
 // MakeHandler creates a RespHandler instance
 func MakeHandler() *RespHandler {
 	var db databaseface.Database
-	db = database.NewEchoDatabase()
+	db = database.NewDataBase() // 使用正在的database
 	return &RespHandler{
 		db: db,
 	}
